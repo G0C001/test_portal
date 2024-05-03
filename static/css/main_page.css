@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: none;
+}
+
+.spinner {
+    width: 70px;
+    height: 70px;
+    border: 7px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #a21fd5;
+    border-radius: 50%;
+    animation: spin 1s ease-in-out infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px;
+    margin-left: -20px;
+    display: none;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+.custom-alert {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    font-size: 22px;
+    transform: translate(-50%, -50%);
+    padding: 10px 70px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: none;
+}
+.permission-page{
+    display: flex;
+}
+.permission-con{
+    height: 97.3vh;
+    width: 350px;
+    background-color: rgb(201, 228, 251);
+    padding: 10px;
+}
+.fullscreen, .internet, .mic, .camera{
+    /* background-color: rgb(110, 25, 25); */
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    padding: 20px;
+}
+.permission-con i {
+    font-size: 30px;
+}
+.permission-con button{
+    padding: 5px;
+    border-radius: 25px;
+    font-size: 20px;
+    width: 100%;
+    background-color: rgb(22, 119, 22);
+    border: 2px solid white;
+    color :rgb(195, 238, 195);
+}
+.Give-permissions{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+#exam-instruction{
+    padding: 50px;
+    display: none;
+}
+#exam-instruction p{
+    color: green;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 23px;
+    margin-top: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.start-test{
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+}
+.start-test button{
+      background-color: rgb(195, 141, 246);
+      font-size: 20px;
+      padding: 10px;
+      border-radius: 25px;
+      color: rgb(88, 27, 145);
+      font-weight: bold;
+}
+button{
+    cursor: pointer;
+}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <link rel="shortcut icon" sizes="180x180" href="{% static 'images/T_favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/main_page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/exam_portal.css' %}">
+
+</head>
+<body>
+    {% block content %}
+    <div class="spinner" id="spinner"></div>
+    
+    <div id="custom-alert" class="custom-alert">
+        <span id="alert-message"></span>
+    </div>
+
+    <div class="permission-page">
+        <div class="permission-con">
+            <div class="fullscreen">
+                <p id="fullscreen">Fullscreen</p>
+                <i class="bi bi-check2-circle" id="checkbox1"></i>
+            </div>
+
+            <div class="internet">
+                <p id="internet">Speed</p>
+                <i class="bi bi-wifi" id="checkbox2"></i>
+            </div>
+
+            <div class="mic">
+                <p id="Microphone">Microphone</p>
+                <i class="bi bi-check2-circle" id="checkbox3"></i>
+            </div>
+
+            <div class="camera">
+                <p id="Camera">Camera</p>
+                <i class="bi bi-check2-circle" id="checkbox4"></i>
+            </div>
+
+            <div class="Give-permissions">
+                <button onclick="Givepermissions()">Give permissions</button>
+            </div>
+        </div>
+
+        <div id="exam-instruction">
+            <p>1 .  Prior to starting the exam, ensure that you have a stable internet connection to prevent any disruptions during the examination.</p>
+            
+            <p>2 . During the examination, ensure that you are in a quiet and well-lit environment to minimize distractions and aid concentration.</p>
+            
+            <p>3 .  If you encounter any technical issues during the exam, immediately notify the exam proctor or technical support team for assistance. </p>
+            
+            <p>4 .  Ensure that your device's camera and microphone are enabled throughout the examination for proctoring purposes. </p>
+            
+            <p>5 . Do not attempt to access any unauthorized resources or communicate with other individuals during the exam period.</p>
+            
+            <p>6 .  Keep all necessary materials, such as scratch paper, handy before the exam begins. Calculators will be provided in the exam portal. </p>
+            
+            <p>7 .  Once you have completed the exam, submit your answers according to the instructions provided by the exam platform. </p>
+            
+            <p>8 .  Remember to adhere to the exam's time limit and pace yourself accordingly to complete all sections or questions within the allotted time. </p>
+            
+            <div class="start-test">
+                <button onclick="starttest()">Start Test</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div  id="exam_portal_page">
+
+
+        <div class="exam_portal">
+            
+        
+        
+        <div class="first-con">
+            <p class="company-logo"><i class="bi bi-door-open"></i>  EXAM PORTAL</p>
+        
+            
+            <div class="calc-con">
+                <div id="lable_calculator" onclick="calculator()">CALCULATOR</div>
+                <div id="calculator">
+                    <div class="calculator">
+                        <input  type="text" placeholder="0" id="inputext">
+                        <button class="calc-btn"  class="calc-btn" onclick="clr()">C</button>
+                        <button class="calc-btn"  onclick="del()">DEL</button>
+                        <button class="calc-btn"  onclick="calculate('%')">%</button>
+                        <button class="calc-btn"  onclick="calculate('/')">/</button>
+                        <button class="calc-btn"  onclick="calculate('7')">7</button>
+                        <button class="calc-btn"  onclick="calculate('8')">8</button>
+                        <button class="calc-btn"  onclick="calculate('9')">9</button>
+                        <button class="calc-btn"  onclick="calculate('*')">*</button>
+                        <button class="calc-btn"  onclick="calculate('4')">4</button>
+                        <button class="calc-btn"  onclick="calculate('5')">5</button>
+                        <button class="calc-btn"  onclick="calculate('6')">6</button>
+                        <button class="calc-btn"  class="calc-btn"  onclick="calculate('-')">-</button>
+                        <button class="calc-btn"  onclick="calculate('1')">1</button>
+                        <button class="calc-btn"  onclick="calculate('2')">2</button>
+                        <button class="calc-btn"  onclick="calculate('3')">3</button>
+                        <button class="calc-btn"  onclick="calculate('+')">+</button>
+                        <button class="calc-btn"  onclick="calculate('.')">.</button>
+                        <button class="calc-btn"  onclick="calculate('0')">0</button>
+                        <button class="calc-btn"   class="equal" onclick="Result()">=</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="candidate-information">ADMIN</div>
+        </div>
+        
+        <button class="slidebar bi bi-fast-forward-circle-fill"> Click to select Questions</button>
+        
+        <div class="qustion_answer_block">
+            <div>
+            
+            <div class="question-prompt">
+                {% for i in DB_ALL_QUESTIONS %}
+        
+                    <button class="question-select-option">
+                        <input type="hidden" value="{{ forloop.counter }}"> <!-- question no -->
+                        <input type="hidden" value="{{ i.question }}">      <!-- Questions -->
+                        <input type="hidden" value="{{ i.option1 }}">       <!-- op1 -->
+                        <input type="hidden" value="{{ i.option2 }}">       <!-- op2 -->
+                        <input type="hidden" value="{{ i.option3 }}">       <!-- op3 -->
+                        <input type="hidden" value="{{ i.option4 }}">       <!-- op4 -->
+                        <input type="hidden" value="{{ i.answer }}">        <!-- answer -->
+                   {{ forloop.counter }} </button>
+        
+                {% endfor %}
+        
+            </div>
+        
+            </div>
+        
+            
+            <div class="answer-and-option-block">
+        
+                {% for i in DB_ALL_QUESTIONS %}
+                <div id="question-section">
+        
+                    <h3 class="display-question"><span style="color: rgb(41, 14, 216);font-weight: bold;">{{ forloop.counter }}Q.</span> {{ i.question }}</h3>
+                    <form class="answer-option-display">
+                        {% csrf_token %}
+                        <pre class="line">(A) <input type="radio" id="option1" name="options{{ forloop.counter }}" value="{{ i.option1 }}">  {{ i.option1 }}</pre>
+                        <pre class="line">(B) <input type="radio" id="option2" name="options{{ forloop.counter }}" value="{{ i.option2 }}">  {{ i.option2 }}</pre>
+                        <pre class="line">(C) <input type="radio" id="option3" name="options{{ forloop.counter }}" value="{{ i.option3 }}">  {{ i.option3 }}</pre>
+                        <pre class="line">(D) <input type="radio" id="option4" name="options{{ forloop.counter }}" value="{{ i.option4 }}">  {{ i.option4 }}</pre>
+                    </form>
+        
+                </div>
+                {% endfor %}
+            </div>
+            
+        
+        
+        </div>
+        
+        
+        </div>
+        <div class="footer-con">
+            <div>
+                <button class="Clear-option" id="clearButton">CLEAR</button>
+                <button class="Backward-question" onclick="BACKWARD()">BACKWARD</button>
+                <button class="Forward-question" onclick="FORWARD()">FORWARD</button>
+                <button class="Submit-question" onclick="SUBMIT()">SUBMIT</button>
+            </div>
+            <video id="videoElement" autoplay playsinline></video>
+        </div>
+        
+    </div>
+
+
+    <script src="{% static 'js/main_page.js' %}"></script>
+    <script src="{% static 'js/exam_portal.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

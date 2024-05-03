@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" sizes="180x180" href="{% static 'images/T_favicon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/score_card.css' %}">
+
+</head>
+<style>
+  .spinner {
+  width: 70px;
+  height: 70px;
+  border: 7px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #a21fd5;
+  border-radius: 50%;
+  animation: spin 1s ease-in-out infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -20px;
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+
+<body>
+  <div class="spinner" id="spinner"></div>
+    {% block content %}
+    <div class="content" id="score_card_page">
+      <div class="result">
+        <h2>Your Result</h2>
+        <div class="circle">
+          <p class="big">{{ CORRECT_ANSWER }}</p>
+          <p>of {{ TOTAL_QUESTION }}</p> <!-- Corrected line -->
+        </div>
+        <h3>Great</h3>
+        <p>Above a 50% score of candidates will be selected in our company. Your score is {{ PERCENTAGE }}%.</p>
+      </div>
+
+      <div class="summary">
+        <h2 class="summary-h2"></h2>
+        <div class="category reaction">
+          <img src="{% static 'images/icon-reaction.svg' %}" alt="reaction icon" width="20" height="20">
+          <h3>Correct</h3>
+          <p><span class="bold">{{ CORRECT_ANSWER }}</span> / {{ TOTAL_QUESTION }}</p>
+        </div>
+
+        <div class="category memory">
+          <img src="{% static 'images/icon-memory.svg' %}" alt="memoty icon" width="20" height="20">
+          <h3>Wrong</h3>
+          <p><span class="bold">{{ WRONG_ANSWER }}</span> / {{ TOTAL_QUESTION }}</p>
+        </div>
+
+        <div class="category verbal">
+          <img src="{% static 'images/icon-verbal.svg' %}" alt="verbal icon" width="20" height="20">
+          <h3>Percentage</h3>
+          <p><span class="bold">{{ PERCENTAGE }}</span> / 100</p>
+        </div>
+
+        <div class="category visual">
+          <img src="{% static 'images/icon-visual.svg' %}" alt="visual icon" width="20" height="20">
+          <h3>Reaction</h3>
+          <p class="bold"><span class="bold"></span>{{ REACTION }}</p>
+        </div>
+        <button type="button">Continue</button>
+      </div>
+    </div>
+    {% endblock %}
+</body>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  var spinner = document.getElementById("spinner");
+  spinner.style.display = "block";
+  document.getElementById("score_card_page").style.display = "none"
+  document.body.style.background = "none";
+
+  setTimeout(function() {
+      spinner.style.display = "none";
+      document.body.style.background = "block";
+      document.getElementById("score_card_page").style.display = "flex"
+  }, 3000);
+  });
+</script>
+
+
+</html>

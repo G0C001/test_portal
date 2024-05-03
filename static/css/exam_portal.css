@@ -1,0 +1,222 @@
+*{
+    margin: 0;
+    outline: none;
+    border: none;
+    }
+    .first-con{
+    height: 50px;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px dotted black;
+    }
+    .company-logo{
+        font-size: 30px;
+        height: 100px;
+        font-weight: bold;
+        line-height: 50px;
+        background: linear-gradient(45deg, #796b98, #0c03f6, #8a898f, #0b34e8, #97accc, #8e05ea);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-left: 20px;
+    }
+    .candidate-information{
+        font-size: 30px;
+        height: 100px;
+        font-weight: bold;
+        line-height: 50px;
+        margin-right: 20px;
+    }
+    .question-prompt{
+    width: 230px;
+    margin-top: 20px;
+    transition: transform 1s ease;
+    transform: translateX(-110%);
+    max-height: 500px;
+    overflow-y: scroll;
+    border: 2px dotted black;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-right: 50px;
+    padding: 10px;
+    }
+    .question-select-option{
+    font-size: 18px;
+    background: none;
+    color: black;
+    border-radius: 25px;
+    border: 2px solid rgb(30, 28, 28);
+    margin: 10px;
+    }
+    .exam_portal{
+    height: 91vh;
+    }
+    .slidebar{
+    font-size: 18px;
+    width: 255px;
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    border: 2px dotted rgb(32, 31, 31);
+    margin-top: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    }
+    .question-prompt.slide-in {
+    display: grid;
+    transform: translateX(0);
+    }
+    .qustion_answer_block{
+    display: flex;
+    margin-right: 100px;
+    }
+    .display-question{
+    color: black;
+    height: max-content;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 22px;
+    border: 1px dotted black;
+    }
+    .answer-option-display{
+    font-size: 18px;
+    color: black;
+    font-weight: 200;
+    background:none;
+    padding: 10px;
+    }
+    .line{
+        margin: 17px;
+    }
+    .answer-and-option-block{
+    width: 100%;
+    margin-top: 20px;
+    }
+    .answer-option-display input[type="radio"] {
+        transform: scale(1.5);
+    }
+    .footer-con {
+    display: flex;
+    justify-content: end;
+    padding-top: 8px;
+    }
+    
+    .Clear-option{
+    background-color: firebrick;
+    }
+    .Forward-question{
+    background-color: orange;
+    }
+    .Backward-question{
+    background-color: darkviolet;
+    }
+    .Submit-question{
+    background-color: darkgreen;
+    }
+    .Clear-option, .Forward-question, .Backward-question, .Submit-question{
+    width: 120px;
+    height: 40px;
+    margin-right: 10px;
+    color: whitesmoke;
+    font-weight: bold;
+    border-radius: 25px;
+    }
+    .Clear-option:hover, 
+    .Forward-question:hover, 
+    .Backward-question:hover, 
+    .Submit-question:hover,
+    .slidebar,
+    .question-select-option,
+    #option1,#option2,#option3,#option4 {
+        cursor: pointer;
+        border-radius: 15px;
+    }
+    #lable_calculator:hover{
+        cursor: pointer;
+        border-radius: 15px;
+    }
+    #videoElement{
+      height: 150px;
+      width: auto;
+      margin-top: -100px;
+      margin-right: 100px;
+      margin-left: 200px;
+      transform: scaleX(-1);
+      border-radius: 50px;
+    }
+    .calc-con{
+        width: auto;
+        margin-left: auto;
+        margin-right: 30px;
+    }
+    #calculator{
+        height: auto;
+        background-color: #0a0909;
+        width: auto;
+    }
+    #lable_calculator{
+        margin-bottom: 5px;
+        width: max-content;
+        margin-left: 60px;
+        background-color: greenyellow;
+        border-radius: 35px;
+        text-align: center;
+        height: 35px;
+        padding: 15px;
+        padding-bottom: 0;
+    }
+    
+    
+    /* calculator css */
+    
+    
+    
+    .calculator{
+        height: 100hv;
+        position: absolute;
+        width: max-content;
+        background-color: rgb(35, 99, 59);
+        display: grid;
+        grid-template-columns: repeat(4,60px);
+        padding: 10px;
+        gap: 4px;
+        /* padding: 35px; */
+        padding-top: 10px;
+        border-radius: 25px;
+        
+    }
+    #inputext{
+        grid-column: span 4;
+        background-color: rgb(9, 14, 11);
+        margin-bottom: 20px;
+        height: 55px;
+        border: none;
+        border-radius: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 23px;
+        font-weight: bold;
+        color: rgb(227, 89, 112);
+        text-align: end;
+    }
+    .calc-btn{
+        height: 40px;
+        margin-bottom: 15px;
+        border-radius: 25px;
+        border: 0;
+        color: black;
+        font-size: 25px;
+        font-family: sans-serif; 
+        background-color: rgb(161, 230, 58);        
+    }
+    .equal{
+        grid-column: span 2;
+    }
+    .calc-btn:hover{
+        cursor: pointer;
+        background-color: aliceblue;
+    }
+    
+    
+    
